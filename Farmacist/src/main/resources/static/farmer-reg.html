@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+
+<script>
+$(function(){
+	$("#farmForm").submit(function(evt){
+		
+		evt.preventDefault();
+		
+		formdata = new FormData();
+		formdata.append("fname",$("#fname").val());
+		//formdata.append("faadhar", $("#faadhar").prop('files')[0]);
+		
+		var obj={
+				fname:$("#fname").val(),
+				fcontact:$("#fcontact").val,
+				femail:$("#femail").val(),
+				faddress:$("#faddress").val(),
+				fcity:$("#fcity").val(),
+				fstate:$("#fstate").val(),
+				fpin:$("#fpin").val(),
+				farea:$("#farea").val(),
+				fareaAddress:$("#fareaAddress").val(),
+				fareaPincode:$("#fareaPincode").val(),
+				faccountNo:$("#faccountNo").val(),
+				fifsc:$("#fifsc").val(),
+				faadhar:$("#faadhar").val(),
+				fpan:$("#fpan").val(),
+				fcertificate:$("#fcert").val(),
+				fpassword:$("#fpassword").val()
+				
+		}
+		$.ajax({
+			url         : '/fregister', //url we want to hit
+			method      : 'POST', //GET or POST or any other method of HTTP
+			//data 	    : formdata,
+			data		: JSON.stringify(obj),
+			contentType	: 'application/json',
+			//contentType : 'application/x-www-form-urlencoded',
+			//contentType: 'multipart/form-data',
+			//processData: false,
+			success: function(response){
+				
+				alert(JSON.stringify(response));
+				
+			}
+			
+		})
+		
+	})
+})
+</script>
+
+</head>
+<body>
+<h1>Register here</h1>
+<form id="farmForm">
+Full Name: <input id="fname"><br>
+Contact No: <input id="fcontact"><br>
+Email ID: <input id="femail"><br>
+Address: <input id="faddress"><br>
+City: <input id="fcity"><br>
+State: <input id="fstate"><br>
+Pin Code: <input id="fpin"><br>
+Area: <input id="farea"><br>
+Area address: <input id="fareaAddress"><br>
+Area Pincode: <input id="fareaPincode"><br>
+Account Number: <input id="faccountNo"><br> 
+IFSC Code: <input id="fifsc"><br>
+Aadhar: <input type="file" id="faadhar"/><br/>
+Pan: <input type="file" id="fpan"/><br/>
+Certificate: <input type="file" id="fcert"/><br/>
+Password: <input id="fpassword"><br>
+<button type="submit">Register</button>
+</form>
+</body>
+</html>
